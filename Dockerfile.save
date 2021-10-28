@@ -1,0 +1,14 @@
+FROM ubuntu:20.04
+RUN apt-get update -y
+RUN apt-get install nginx -y
+RUN apt-get install curl -y
+RUN apt-get update -y
+RUN apt-get install nginx -y
+RUN apt-get install curl -y
+COPY html2/index.html /var/www/abdhesh/tech
+COPY www  /etc/nginx/sites-available/
+RU./nginx.conf  /etc/nginx/
+RUN rm -f /etc/nginx/sites-enabled/*
+RUN ln -s /etc/nginx/sites-available/task /etc/nginx/sites-enabled/
+EXPOSE 80:80
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
